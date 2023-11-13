@@ -1,0 +1,34 @@
+{
+    "name": "ohtyap/laravel-sane-validator",
+    "description": "sane validation rule handling for laravel",
+    "keywords": ["laravel", "validation"],
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "ohtyap"
+        }
+    ],
+    "require": {
+        "illuminate/validation": "^10"
+    },
+    "require-dev": {
+        "illuminate/translation": "^10.26",
+        "phpunit/phpunit": "^10.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ohtyap\\LaravelSaneValidator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Ohtyap\\LaravelSaneValidator\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
