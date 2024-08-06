@@ -10,10 +10,10 @@
         }
     ],
     "require": {
-        "illuminate/validation": "^10"
+        "illuminate/validation": "^10|^11"
     },
     "require-dev": {
-        "illuminate/translation": "^10.26",
+        "illuminate/translation": "^10|^11",
         "phpunit/phpunit": "^10.3"
     },
     "autoload": {
