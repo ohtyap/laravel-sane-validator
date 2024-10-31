@@ -4,12 +4,20 @@ declare(strict_types=1);
 
 namespace Ohtyap\LaravelSaneValidator;
 
+use Illuminate\Contracts\Translation\Translator;
 use Illuminate\Validation\Validator as IlluminateValidator;
 
 class Validator extends IlluminateValidator
 {
     private static bool $defaultEnableSaneValidation =  true;
-    private ?bool $enabledSaneValidation = null;
+    private ?bool $enabledSaneValidation;
+
+    public function __construct(Translator $translator, array $data, array $rules, array $messages = [], array $attributes = [])
+    {
+        parent::__construct($translator, $data, $rules, $messages, $attributes);
+
+        $this->enabledSaneValidation = self::$defaultEnableSaneValidation;
+    }
 
     public static function defaultEnableSaneValidation(bool $defaultEnableSaneValidation): void
     {
@@ -28,7 +36,7 @@ class Validator extends IlluminateValidator
 
     private function isUsingSaneValidationBehavior(): bool
     {
-        return ($this->enabledSaneValidation === true || self::$defaultEnableSaneValidation = true);
+        return $this->enabledSaneValidation;
     }
 
     protected function presentOrRuleIsImplicit($rule, $attribute, $value)
