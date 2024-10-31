@@ -7,8 +7,11 @@ namespace Ohtyap\LaravelSaneValidator\Tests;
 use Illuminate\Translation\ArrayLoader;
 use Illuminate\Translation\Translator;
 use Ohtyap\LaravelSaneValidator\Validator;
+use PHPUnit\Framework\Attributes\CoversClass;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
+#[CoversClass(Validator::class)]
 class ValidatorTest extends TestCase
 {
     private Translator $translator;
@@ -18,9 +21,7 @@ class ValidatorTest extends TestCase
         $this->translator = new Translator(new ArrayLoader(), 'en');
     }
 
-    /**
-     * @dataProvider dataForValidation
-     */
+    #[DataProvider('dataForValidation')]
     public function testValidation(array $data, array $rules, bool $passes, array $failed): void
     {
         $validator = new Validator(
