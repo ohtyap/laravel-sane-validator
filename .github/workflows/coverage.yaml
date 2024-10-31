@@ -1,0 +1,44 @@
+name: coverage
+
+on: [push, pull_request]
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        name: coverage
+
+        steps:
+            -   name: Checkout code
+                uses: actions/checkout@v4
+
+            -   name: Cache dependencies
+                uses: actions/cache@v4
+                with:
+                    path: ~/.composer/cache/files
+                    key: dependencies-laravel-11.*-php-8.3-composer-${{ hashFiles('composer.json') }}
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: 8.3
+                    coverage: pcov
+
+            -   name: Install dependencies
+                run: |
+                    composer update --prefer-dist --no-interaction
+
+            -   name: Run tests and collect coverage
+                run: vendor/bin/phpunit --log-junit junit.xml --coverage-clover coverage.xml
+
+            -   name: Upload test results to Codecov.io
+                if: ${{ !cancelled() }}
+                uses: codecov/test-results-action@v1
+                with:
+                    token: ${{ secrets.CODECOV_TOKEN }}
+
+            -   name: Upload coverage to Codecov
+                if: ${{ !cancelled() }}
+                uses: codecov/codecov-action@v4
+                with:
+                    token: ${{ secrets.CODECOV_TOKEN }}
