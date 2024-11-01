@@ -10,7 +10,7 @@
         }
     ],
     "require": {
-        "illuminate/validation": "^11"
+        "illuminate/validation": "^10|^11"
     },
     "require-dev": {
         "illuminate/translation": "^11",
