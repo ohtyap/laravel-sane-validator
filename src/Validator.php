@@ -10,7 +10,7 @@ use Illuminate\Validation\Validator as IlluminateValidator;
 class Validator extends IlluminateValidator
 {
     private static bool $defaultEnableSaneValidation =  true;
-    private ?bool $enabledSaneValidation;
+    private bool $enabledSaneValidation;
 
     public function __construct(Translator $translator, array $data, array $rules, array $messages = [], array $attributes = [])
     {

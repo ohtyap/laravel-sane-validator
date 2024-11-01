@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method Ohtyap\\\\LaravelSaneValidator\\\\Validator\\:\\:__construct\\(\\) has parameter \\$attributes with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Validator.php
+
+		-
+			message: "#^Method Ohtyap\\\\LaravelSaneValidator\\\\Validator\\:\\:__construct\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Validator.php
+
+		-
+			message: "#^Method Ohtyap\\\\LaravelSaneValidator\\\\Validator\\:\\:__construct\\(\\) has parameter \\$messages with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Validator.php
+
+		-
+			message: "#^Method Ohtyap\\\\LaravelSaneValidator\\\\Validator\\:\\:__construct\\(\\) has parameter \\$rules with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Validator.php
