@@ -27,7 +27,7 @@ class ValidatorStrategyTest extends TestCase
     }
 
     #[DataProvider('dataForValidation')]
-    public function testDefaultStrategyByStaticVariable(array $data, array $rules, bool $strategySaneValidatorPasses, bool $strategyLaravelPasses): void
+    public function testSaneValidatorStrategy(array $data, array $rules, bool $strategySaneValidatorPasses, bool $strategyLaravelPasses): void
     {
         $validator = new Validator(
             $this->translator,
@@ -48,7 +48,7 @@ class ValidatorStrategyTest extends TestCase
     }
 
     #[DataProvider('dataForValidation')]
-    public function testEnableSaneValidationPasses(array $data, array $rules, bool $strategySaneValidatorPasses, bool $strategyLaravelPasses): void
+    public function testLaravelStrategy(array $data, array $rules, bool $strategySaneValidatorPasses, bool $strategyLaravelPasses): void
     {
         Validator::defaultEnableSaneValidation(false);
 
@@ -82,6 +82,26 @@ class ValidatorStrategyTest extends TestCase
                 ],
                 'strategySaneValidatorPasses' => false,
                 'strategyLaravelPasses' => true,
+            ],
+            [
+                'data' => [
+                    'email' => null,
+                ],
+                'rules' => [
+                    'email' => 'required|sometimes|nullable|email',
+                ],
+                'strategySaneValidatorPasses' => true,
+                'strategyLaravelPasses' => false,
+            ],
+            [
+                'data' => [
+                    'email' => null,
+                ],
+                'rules' => [
+                    'email' => 'filled|nullable|email',
+                ],
+                'strategySaneValidatorPasses' => true,
+                'strategyLaravelPasses' => false,
             ],
         ];
     }
